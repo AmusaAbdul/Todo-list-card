@@ -113,7 +113,7 @@ export default function page() {
                 <button onClick={() => setDarkMode(!darkMode)}> {darkMode ? "☀️" : "🌙"}</button>
             </div>
             <div className="mt-5 flex flex-col gap-5">
-                <input className="border-2 border-white dark:border-blue-950 text-xs rounded-full p-2 w-full outline-none" type="search" placeholder="Search" />
+                <button onClick={() => router.push("/")} className=" bg-white dark:bg-blue-950 text-sm rounded-full h-7 p-2 w-full outline-none" type="button"></button>
                 <div className="flex gap-5 flex-wrap ">
                     <button onClick={() => setFilter("All")} value="All" className={`${filter === "All" ? "bg-blue-950 dark:bg-amber-50  text-white dark:text-blue-950" : "bg-amber-50 dark:bg-blue-950"} p-3 rounded-full text-[0.8rem]`}>All</button>
                     <button onClick={() => (setFilter("Work"), setCategory("Work"))} value="Work" className={`${filter === "Work" ? "bg-blue-950 dark:bg-amber-50  text-white dark:text-blue-950" : "bg-amber-50 dark:bg-blue-950"} p-3 rounded-full text-[0.8rem]`}>Work</button>
@@ -151,7 +151,7 @@ export default function page() {
                 <ol className="list-decimal mt-5 flex flex-col gap-2 overflow-y-auto max-h-80">
                     {filteredTask.map((t, index) => (
                         <div key={index} className="">
-                            <div className={`flex pl-7 flex-col gap-5 text-[0.8rem]  bg-white dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-4 hover:shadow-md transition justify-between`}>
+                            <div className={`flex pl-10 flex-col gap-5 text-[0.8rem]  bg-white dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-4 hover:shadow-md transition justify-between`}>
                                 {edit === t.id ?
                                     <div className="flex flex-col gap-2">
                                         <textarea className={`border-2 text-[0.8rem] h-40 w-full flex-1 outline-none border-blue-950 dark:border-blue-900 p-3`}
