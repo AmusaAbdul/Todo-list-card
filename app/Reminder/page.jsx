@@ -8,13 +8,12 @@ const page = () => {
 
 
   const router = useRouter()
-  const {darkMode, setDarkMode, task, tasks, setTask, setTasks, date, setDate} = useTheme()
+  const {darkMode, setDarkMode, tasks,  filter, setFilter, setCategory, category} = useTheme()
   const today = new Date().toISOString().split("T")[0];
-
-
   const futureTasks = tasks.filter(
     (t) => t.date > today && !t.completed 
   );
+  const filteredFutureTasks = filter === "All" ?  futureTasks : futureTasks.filter(upComing => upComing.category === filter)
   const filterCategory = {
     Personal: "P",
     Work: "W",
@@ -44,6 +43,16 @@ const page = () => {
         <button onClick={() => setDarkMode(!darkMode)}> {darkMode ? "☀️" : "🌙"}</button>
       </div>
 
+      <div className="mt-5 mb-8 flex flex-col gap-5">
+        <button onClick={() => router.push("/")} className=" bg-amber-50 dark:bg-blue-950 text-sm rounded-full h-7 p-2 w-full outline-none" type="button"></button>
+        <div className="flex gap-5 flex-wrap ">
+          <button onClick={() => setFilter("All")} value="All" className={`${filter === "All" ? "bg-blue-950 dark:bg-amber-50  text-white dark:text-blue-950" : "bg-amber-50 dark:bg-blue-950"} p-3 rounded-full text-[0.8rem]`}>All</button>
+          <button onClick={() => (setFilter("Work"), setCategory("Work"))} value="Work" className={`${filter === "Work" ? "bg-blue-950 dark:bg-amber-50  text-white dark:text-blue-950" : "bg-amber-50 dark:bg-blue-950"} p-3 rounded-full text-[0.8rem]`}>Work</button>
+          <button onClick={() => (setFilter("Personal"), setCategory("Personal"))} value="Personal" className={`${filter === "Personal" ? "bg-blue-950 dark:bg-amber-50  text-white dark:text-blue-950" : "bg-amber-50 dark:bg-blue-950"} p-3 rounded-full text-[0.8rem]`}>Personal</button>
+          <button onClick={() => (setFilter("Wishlist"), setCategory("Wishlist"))} value="Wishlist" className={`${filter === "Wishlist" ? "bg-blue-950 dark:bg-amber-50  text-white dark:text-blue-950" : "bg-amber-50 dark:bg-blue-950"} p-3 rounded-full text-[0.8rem]`}>Wishlist</button>
+        </div>
+      </div>
+
       {tasks.length === 0 ? 
         <div className="flex min-h-screen items-center justify-center flex-col">
         <img src={image} className="rounded-full h-35 w-35" alt="No todo" />
@@ -51,7 +60,7 @@ const page = () => {
         <p className="text-sm">Navigate to the todo page and create one</p>
       </div> :
       <div className="flex flex-wrap gap-3">
-        {futureTasks.map((t) => {
+        {filteredFutureTasks.map((t) => {
           const diff = new Date(t.date) - new Date()
           const days = Math.floor(diff / (1000 * 60 * 60 * 24))
           return(

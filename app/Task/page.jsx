@@ -113,7 +113,7 @@ export default function page() {
                 <button onClick={() => setDarkMode(!darkMode)}> {darkMode ? "☀️" : "🌙"}</button>
             </div>
             <div className="mt-5 flex flex-col gap-5">
-                <button onClick={() => router.push("/")} className=" bg-white dark:bg-blue-950 text-sm rounded-full h-7 p-2 w-full outline-none" type="button"></button>
+                <button onClick={() => router.push("/")} className=" bg-amber-50 dark:bg-blue-950 text-sm rounded-full h-7 p-2 w-full outline-none" type="button"></button>
                 <div className="flex gap-5 flex-wrap ">
                     <button onClick={() => setFilter("All")} value="All" className={`${filter === "All" ? "bg-blue-950 dark:bg-amber-50  text-white dark:text-blue-950" : "bg-amber-50 dark:bg-blue-950"} p-3 rounded-full text-[0.8rem]`}>All</button>
                     <button onClick={() => (setFilter("Work"), setCategory("Work"))} value="Work" className={`${filter === "Work" ? "bg-blue-950 dark:bg-amber-50  text-white dark:text-blue-950" : "bg-amber-50 dark:bg-blue-950"} p-3 rounded-full text-[0.8rem]`}>Work</button>
@@ -126,7 +126,7 @@ export default function page() {
             <form disabled={!task.trim() || !date} onSubmit={handleTask} className={`${filter === "All" ? "hidden" : ""} ${filter === "Note" ? "hidden" : ""} bg-amber-50 dark:bg-blue-950 mt-10 p-3 flex flex-col gap-2 rounded-4xl`}>
                 <div className={`flex flex-col relative gap-3 ${filter === "All" ? "hidden" : ""} ${filter === "Note" ? "hidden" : ""}`}>
                     <textarea value={task} onChange={(e) => setTask(e.target.value)} required placeholder="Enter todo" type="text" className={`border-2 text-[0.8rem] w-full  outline-none border-blue-950 dark:border-blue-900 p-3`} />
-                    <button type="submit" className={`absolute text-[0.8rem] right-2 bottom-2 p-1 w-15 text-center ${!task.trim() || !date
+                    <button type="submit" className={`absolute text-[0.8rem] right-2 bottom-2 p-1 mt-2 w-15 text-center ${!task.trim() || !date
                         ? "bg-gray-400 cursor-not-allowed"
                         : "bg-blue-950 text-amber-50 dark:bg-amber-50 dark:text-blue-950"
                         }`}>
@@ -161,7 +161,7 @@ export default function page() {
                                     <li className={`${t.completed ? "line-through " : ""} `}> {t.text}</li>
                                 }
                                 <hr className="text-blue-900" />
-                                <div className="flex gap-2">
+                                <div className="flex items-center gap-2">
                                     <button onClick={() => { setTask(t.text), setEdit(t.id) }} className="bg-green-500 text-white p-1 font-light hover:bg-green-700">Edit</button>
                                     <input checked={t.completed ?? false} onChange={() => toggleComplete(t.id)} type="checkbox" />
                                     <button onClick={() => deleteItem(t.id)} key={index} className="bg-red-500 text-amber-50 p-1 font-light hover:bg-red-700">Del</button>
