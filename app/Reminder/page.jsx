@@ -30,6 +30,8 @@ const page = () => {
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
 
+    if (days < 2) return " Tomorrow"
+
     return  `${days}d ${hours}h ${minutes}m`
 
   }
@@ -65,8 +67,8 @@ const page = () => {
           const days = Math.floor(diff / (1000 * 60 * 60 * 24))
           return(
             <div key={t.id} id="reminderBox" className={`${days < 2 ? "bg-red-500" : days < 5 ? "bg-yellow-500" : "bg-green-500"} p-3 text-xs rounded-2xl`}>
-              <p >{t.text}({filterCategory[t.category]})</p>
-              <p className="flex justify-end mt-5">{getTimeRemaining(t.date)} left</p>
+              <p >{t.text} ({filterCategory[t.category]})</p>
+              <p className="flex justify-end mt-5">Due {days < 2 ? "" : "in"} {getTimeRemaining(t.date)}</p>
             </div> 
           )
         })}

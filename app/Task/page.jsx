@@ -156,13 +156,14 @@ export default function page() {
                                     <div className="flex flex-col gap-2">
                                         <textarea className={`border-2 text-[0.8rem] h-40 w-full flex-1 outline-none border-blue-950 dark:border-blue-900 p-3`}
                                             type="text" value={task} onChange={(e) => setTask(e.target.value)} />
+                                        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="border-2 border-blue-950 text-[0.8rem] dark:border-blue-900 p-2 w-fit" />
                                         <button onClick={() => handleSave(t.id)} className="bg-green-500 text-white p-1 font-light hover:bg-green-700">Save</button>
                                     </div> :
                                     <li className={`${t.completed ? "line-through " : ""} `}> {t.text}</li>
                                 }
                                 <hr className="text-blue-900" />
                                 <div className="flex items-center gap-2">
-                                    <button onClick={() => { setTask(t.text), setEdit(t.id) }} className="bg-green-500 text-white p-1 font-light hover:bg-green-700">Edit</button>
+                                    <button onClick={() => { setTask(t.text), setEdit(t.id) }} className={`bg-green-500 text-white p-1 ${edit === t.id ? "hidden" : ""} font-light hover:bg-green-700`}>Edit</button>
                                     <input checked={t.completed ?? false} onChange={() => toggleComplete(t.id)} type="checkbox" />
                                     <button onClick={() => deleteItem(t.id)} key={index} className="bg-red-500 text-amber-50 p-1 font-light hover:bg-red-700">Del</button>
                                 </div>
@@ -242,7 +243,7 @@ export default function page() {
                                     </div> :
                                   <span>{n.text}</span>}
                                 <div className="flex justify-end  mt-5 gap-3">
-                                    <button onClick={() => (setNote(n.text), setEdit(n.id))} className="bg-green-500 text-amber-50 p-1 text-sm font-light hover:bg-green-700">Edit</button>
+                                    <button onClick={() => (setNote(n.text), setEdit(n.id))} className={`bg-green-500 text-amber-50 p-1 text-sm font-light hover:bg-green-700 ${edit === n.id ? "hidden" : ""}`}>Edit</button>
                                     <button onClick={() => deleteNote(n.id)} className="bg-red-500 text-sm text-amber-50 p-1 font-light hover:bg-red-700">Del</button>
                                 </div>
                             </li>
