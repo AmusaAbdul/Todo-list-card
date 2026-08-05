@@ -178,10 +178,11 @@ export default function page() {
                     <h1>Today's Todo</h1>
                     {tasks.length === 0 ? 
                     (<p className="bg-white dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition">
-                        No todo, Navigate to the category of todo you want and input a todo
+                        No todo!, Navigate to the category of todo you want and input a todo
                     </p>) : ( todayTasks.map((t, index) => (
-                        <p className="bg-white dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition" key={index}>
-                            {t.text}  ({filterCategory[t.category]})
+                        <p className="bg-white flex justify-between dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition" key={index}>
+                            <span>{t.text}</span>
+                            <span>({filterCategory[t.category]})</span>                         
                         </p>
                     )))}
                 </div>
@@ -191,8 +192,9 @@ export default function page() {
                     <p className = "bg-white dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition">
                         No todo!
                     </p> : futureTasks.map((t, index) => (
-                        <p className="bg-white dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition" key={index}>
-                            {t.text} ({filterCategory[t.category]})
+                        <p className="bg-white flex justify-between dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition" key={index}>
+                            <span>{t.text}</span>
+                            <span>({filterCategory[t.category]})</span> 
                         </p>
                     ))}
                 </div>
@@ -202,8 +204,9 @@ export default function page() {
                     <p className="bg-white dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition">
                         No  todo!
                     </p> : completedTasks.map((t, index) => (
-                        <p className="bg-white dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition" key={index}>
-                            {t.text} ({filterCategory[t.category]})
+                        <p className="bg-white flex justify-between dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition" key={index}>
+                            <span>{t.text}</span>
+                            <span>({filterCategory[t.category]})</span>                         
                         </p>
                     ))}
                 </div>
@@ -213,7 +216,10 @@ export default function page() {
                         <p className="bg-white dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition">
                         No  todo!
                     </p> : overdueTasks.map((t, index) => (
-                        <p className="bg-white dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition" key={index}>{t.text} ({filterCategory[t.category]})</p>
+                        <p className="bg-white flex justify-between dark:bg-blue-950 shadow-sm border border-gray-200 dark:border-blue-900 rounded-2xl p-2 hover:shadow-md transition" key={index}>
+                            <span>{t.text}</span>
+                            <span>({filterCategory[t.category]})</span>                            
+                        </p>
                     ))}
                 </div>
             </div>
